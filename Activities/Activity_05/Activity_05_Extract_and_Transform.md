@@ -1,24 +1,27 @@
-# Activity 4: Using Bash and Python Together
-In this activity, you will use `curl` to fetch JSON data from a public API, and then write and run a Python script to parse that JSON and convert it into a well-structured CSV file. This demonstrates how to combine Bash for data retrieval and Python for data transformation.
+# Activity 5: Extract and Transform JSON to CVS
+
+In this activity, you will use explore the fours primary methods of gathering data, parse and transform the data into a structured and human-readable dataframe using `requests`, `json`, `beautifulsoup`, and `pandas`. After extraction and transforming you will export the data to three `CSV` files.
+
+The four primary methods of data extraction are:
+- APIs
+- Webscraping
+- File Ingestion
+- Streaming
+
+For the purposes of this activity, we will be running Python Notebooks (`.ipynb`) that have been curated to follow along to get exposure to the process of extracting via APIs, Webscraping, and File Ingestion.
 
 <br>
 
 ## Step 0. Setup 
 
-### Follow these directions to ensure you have `Python` and `PIP` installed and working in your environment:
-- [Windows Users](https://github.com/austin-t-rivera/DS-2002-F25/blob/main/Setup/Windows_Users/)
-- [macOS Users](https://github.com/austin-t-rivera/DS-2002-F25/blob/main/Setup/macOS_Users/)
-
-<br>
-
 ### Navigate to your `DS-2002-F25` directory, update your `main` branch, and setup the Activity.
 1. Open your Git Bash (Windows) or Terminal (macOS).
 
-2. Navigate to your DS-2002-F25 directory. For example: `cd ~/Documents/GitHub/DS-2002-F25/` (yours may differ)
+2. Navigate to your `DS-2002-F25` directory. For example: `cd ~/Documents/GitHub/DS-2002-F25/` (yours may differ)
 
-3. Switch to your `main` branch `git checkout main`.
+3. Make sure that you do not have any unstaged or uncommitted stages by running `git status`. If you doo, `add` and `commit` them.
 
-4. Make sure that you do not have any unstaged or uncommitted stages by running `git status`.
+4. Switch to your `main` branch `git checkout main`.
 
 5. Run `git remote -v`:
    - If your upstream lists my repo `austin-t-rivera/DS-2002-F25.git` and your origin list your repo `<your-github-id>/DS-2002-F25.git`, proceed to step 6.
@@ -28,15 +31,26 @@ In this activity, you will use `curl` to fetch JSON data from a public API, and 
 
 6. Run the `update_repo.sh` file.
 
-7. Use `cd` to navigate to your `DS-2002-F25` repository.
+7. Use `cd` to further navigate to your `/Activities/Activity_05` directory to confirm your `main` branch is up to date.
 
-8. Use `cd` to further navigate to your `/Activities/Activity_04` directory.
+<br>
 
-9. Run `git checkout -b Activity_4` to create and move to a new branch named "Activity_4".
+### Open up a new Codespace in GitHub
+1. Go to **your** `DS-2002-F25` repo in GitHuband make sure you are looking at your `main` branch.
 
-10. Create a new directory for this project and navigate into it:
+2. Create a new branch named `Activity_5` by typing in "Activity_5" and clicking on "Create branch Activity_5 from main".
+<img width="404" height="333" alt="image" src="https://github.com/user-attachments/assets/ae663f18-7930-4731-86e9-d52272c0df07" />
+
+3. To open your first codespace, to the right, you can click on `<> Code`, then `Codespaces`, and lastly `Create codespace on Activity_5`.
+<img width="507" height="539" alt="image" src="https://github.com/user-attachments/assets/74bd4a2b-0a7b-4a6c-8923-a47b1c26e4fb" />
+
+4. NOTE: You are now in your VS Code Codespace! This is a container that is built for you to work in that has essentially all of the functionality of a high-powered IDE, in this case VS Code, but is also fully integrated into your GitHub!
+
+5. Within your Codespace, in the Terminal (bottom center), use `cd` to navigate to your `/Activities/Activity_05` directory
+
+6. Create a new directory for this project and navigate into it:
 ```
-mkdir python_activity && cd python_activity
+mkdir ET_activity && cd ET_activity
 ```
 
 <br>
