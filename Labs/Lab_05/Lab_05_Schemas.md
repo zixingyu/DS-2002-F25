@@ -1,9 +1,14 @@
-# Lab 5: The Data Contract Enforcer
+# Lab 5: Schema - The Data Contract Enforcer
 
-<img width="233" height="150" alt="image" src="https://github.com/user-attachments/assets/6fd8c9ee-10ec-4ae5-9a64-09fb5b713644" />
-<img width="193" height="150" alt="image" src="https://github.com/user-attachments/assets/4ff82e6a-c741-4660-b3c9-8d8f3d650b2d" />
-<img width="150" height="150" alt="image" src="https://github.com/user-attachments/assets/7a0ccd4f-0470-437d-927c-24300ee2b725" />
+---
 
+<img width="400" height="250" alt="image" src="https://github.com/user-attachments/assets/6fd8c9ee-10ec-4ae5-9a64-09fb5b713644" />
+<img width="330" height="250" alt="image" src="https://github.com/user-attachments/assets/4ff82e6a-c741-4660-b3c9-8d8f3d650b2d" />
+<img width="250" height="250" alt="image" src="https://github.com/user-attachments/assets/7a0ccd4f-0470-437d-927c-24300ee2b725" />
+
+---
+
+<br>
 
 In this lab, you'll move from simply extracting and transforming data to the critical Data Management step of **Data Validation and Schema Enforcement**. You will create two separate synthetic datasets, enforce strict data typing on the resulting data, and formally document the final, clean schema for each.
 
@@ -13,41 +18,20 @@ The goal is to understand that clean data is not the default; it must be **enfor
 
 ## Step 0. Setup
 
-### Navigate to your `DS-2002-F25` directory, update your `main` branch.
+### Update your `main` branch and open up a new Codespace in GitHub
 
-1.  Open your Git Bash (Windows) or Terminal (macOS).
+1.  Go to **your** forked `DS-2002-F25` repo in GitHub and make sure you are looking at your `main` branch.
 
-2.  Navigate to your `DS-2002-F25` directory. For example: `cd ~/Documents/GitHub/DS-2002-F25/` (yours may differ)
+2.  To open a Codespace, to the right, you can click on `<> Code`, then `Codespaces`, and lastly `Create codespace on main` or the `+` if this isn't your first rodeo since we did Activity_5.
+    - NOTE: You are now in your VS Code Codespace! This is a container that is built for you to work in that has essentially all of the functionality of a high-powered IDE, in this case VS Code, but is also fully integrated into your GitHub!
 
-3.  Make sure that you do not have any unstaged or uncommitted stages by running `git status`. If you do, `add` and `commit` them.
+4.  Within your Codespace, in the Terminal (bottom center), run the `update_repo.sh` file to update your `main` branch. (OPTIONAL: Follow the prompts in the script to update your other branches if you'd like!)
 
-4.  Switch to your `main` branch `git checkout main`.
+5.  Use `cd` to navigate to your `/Labs/Lab_05` directory, where you should see this file `Lab_05_Schemas.md` if everything is up-to-date.
 
-5.  Run `git remote -v`:
-    * If your upstream lists my repo `austin-t-rivera/DS-2002-F25.git` and your origin list your repo `<your-github-id>/DS-2002-F25.git`, proceed to step 6.
-    * If your upstream lists your repo or does not exist, set my repo by running `git remote add upstream git@github.com:austin-t-rivera/DS-2002-F25.git` and continue in step 5.
-        * Run `git fetch upstream` and continue in step 5.
-        * Run `git merge upstream/main main` and proceed to step 6.
+6.  Create and move into a new branch called `Lab_5` by running `git checkout -b Lab_5`.
 
-6.  Run the `update_repo.sh` file.
-
-7.  Use `cd` to further navigate to your `/Labs/Lab_05` directory to confirm your `main` branch is up to date.
-
-<br>
-
-### Open up a new Codespace in GitHub
-
-1.  Go to **your** `DS-2002-F25` repo in GitHub and make sure you are looking at your `main` branch.
-
-2.  Create a new branch named `Lab_5` by typing in "Lab_5" and clicking on "Create branch Lab_5 from main".
-
-3.  To open your first codespace, to the right, you can click on `<> Code`, then `Codespaces`, and lastly `Create codespace on Lab_5`.
-
-4.  NOTE: You are now in your VS Code Codespace! This is a container that is built for you to work in that has essentially all of the functionality of a high-powered IDE, in this case VS Code, but is also fully integrated into your GitHub!
-
-5.  Within your Codespace, in the Terminal (bottom center), use `cd` to navigate to your `/Labs/Lab_05` directory.
-
-6.  Create a new directory for this project and navigate into it:
+7.  Create a new directory for this project, within the `Labs/Lab_05/` directory, and navigate into it:
     ```bash
     mkdir Schema_Enforcer && cd Schema_Enforcer
     ```
@@ -56,12 +40,10 @@ The goal is to understand that clean data is not the default; it must be **enfor
 
 ### Install Dependencies and Create Script
 
-1.  In your Terminal, run:
-    ```bash
-    pip install pandas
-    ```
+1.  Create a new Python file (`.py`) or Jupyter Notebook (`.ipynb`) named **`lab_script`** (e.g., `lab_script.py` or `lab_script.ipynb`). All code for Parts 1 and 2 will go here.
+2.  Install the `Python` and `Jupyter` extensions.
 
-2.  Create a new Python file (`.py`) or Jupyter Notebook (`.ipynb`) named **`lab_script`** (e.g., `lab_script.py` or `lab_script.ipynb`). All code for Parts 1 and 2 will go here.
+<br>
 
 ---
 
@@ -73,42 +55,55 @@ The goal is to understand that clean data is not the default; it must be **enfor
 
 1.  In your `lab_script`, use Python to create a list of data that is **tabular** but contains type inconsistencies. You can use the standard `csv` module or just Python's built-in file writing.
 
-2.  **Data Requirements:** Create a dataset with at least two records and four columns:
+2.  **Data Requirements:** Create a dataset with at least five (5) records and **five (5) columns**:
     * `student_id` (Should be $\text{INT}$)
     * `major` (Should be $\text{STRING}$)
+    * `GPA` (Should be $\text{FLOAT}$): **Intentionally save some values as integers (e.g., `3` instead of `3.0`).**
     * `is_cs_major` (Should be $\text{BOOL}$): **Intentionally use the strings 'Yes' or 'No'.**
     * `credits_taken` (Should be $\text{FLOAT}$): **Intentionally save the value as a string (e.g., `'10.5'`).**
 
 3.  Write this data to a CSV file named **`raw_survey_data.csv`**.
 
+    ```python
+    # HINT: Use the 'csv' module with 'writer' or 'DictWriter', 
+    # or just simple Python file I/O with .write() to save the data.
+    # Be sure to include headers in your first row!
+    ```
+
 ### Task 2: Create the Hierarchical JSON Data (Requires Normalization)
 
 1.  In your `lab_script`, define a list of dictionaries that is **hierarchical** (nested) using the structure below.
 
-2.  **Data Requirements:** Use the following structure for at least two courses:
+2.  **Data Requirements:** Use the following structure to create a list of dictionaries for all of your courses this semester (at least two courses):
     ```json
     [
       {
-        "course_id": "DS3001",
-        "title": "Data Systems",
-        "level": 300,
+        "course_id": "DS2002",
+        "section": "001",
+        "title": "Data Science Systems",
+        "level": 200,
         "instructors": [
-          {"name": "Alice", "role": "Primary"}, 
-          {"name": "Bob", "role": "TA"} 
+          {"name": "Austin Rivera", "role": "Primary"}, 
+          {"name": "Heywood Williams-Tracy", "role": "TA"} 
         ]
       },
       {
-        "course_id": "DS3002",
-        "title": "Visual Analytics",
+        "course_id": "DS9999",
+        "title": "Example Course Replace with One of yours",
         "level": 300,
         "instructors": [
-          {"name": "Charlie", "role": "Primary"}
+          {"name": "Charlie Bucket", "role": "Primary"}
         ]
-      }
+      },
+      // ... include the rest of your courses here
     ]
     ```
 
 3.  Write this structure to a JSON file named **`raw_course_catalog.json`**.
+
+    ```python
+    # HINT: Use the 'json' module's 'dump' function to write the data to the file.
+    ```
 
 ---
 
@@ -120,20 +115,49 @@ The goal is to understand that clean data is not the default; it must be **enfor
 
 1.  In your `lab_script`, use `pandas` to load `raw_survey_data.csv` into a DataFrame.
 
+    ```python
+    # HINT: Use pd.read_csv()
+    ```
+
 2.  **Enforce Boolean Type:** Write a function or use a custom map/replace to convert the values in the `is_cs_major` column from the strings (`'Yes'`, `'No'`) to proper Python Boolean types (`True`, `False`).
 
-3.  **Enforce Numeric Type:** Use the appropriate `pandas` function (e.g., `.astype()`) to explicitly ensure the `credits_taken` column is stored as a **float** type.
+    ```python
+    # HINT: Use the .replace() or .apply() method on the DataFrame column.
+    ```
+
+3.  **Enforce Numeric Type:** Use the appropriate `pandas` function (e.g., `.astype()`) to explicitly ensure both the **`credits_taken`** and **`GPA`** columns are stored as a **float** type.
+
+    ```python
+    # HINT: Use the .astype() method on the columns and pass a dictionary 
+    # like: {'column_name': 'float64'}
+    ```
 
 4.  Save the cleaned DataFrame to a new file named **`clean_survey_data.csv`**.
+
+    ```python
+    # HINT: Use the DataFrame's .to_csv() method.
+    ```
 
 ### Task 4: Normalize the JSON Data
 
 1.  In your `lab_script`, use the standard `json` module to load the `raw_course_catalog.json` file.
 
+    ```python
+    # HINT: Use the json.load() function.
+    ```
+
 2.  **Normalize:** Use **`pd.json_normalize`** to flatten the hierarchical data into a single, wide DataFrame.
     * **CRITICAL:** Use the **`record_path`** argument to specifically extract the nested **`instructors`** list. This will result in multiple rows for the courses that have multiple instructors (one row per instructor).
 
+    ```python
+    # HINT: pd.json_normalize(data, record_path=['instructors'], meta=['course_id', 'title', 'level'])
+    ```
+
 3.  Save the normalized DataFrame to a new file named **`clean_course_catalog.csv`**.
+
+    ```python
+    # HINT: Use the DataFrame's .to_csv() method.
+    ```
 
 ---
 
@@ -151,6 +175,7 @@ The goal is to understand that clean data is not the default; it must be **enfor
 | :--- | :--- | :--- |
 | `student_id` | `INT` | Unique identifier for the student. |
 | `major` | `VARCHAR(50)` | The student's primary academic major. |
+| `GPA` | `FLOAT` | Student's current Grade Point Average. |
 | `is_cs_major` | `BOOL` | True if the student is a CS major, False otherwise. |
 | `credits_taken` | `FLOAT` | Total cumulative credits completed by the student. |
 
