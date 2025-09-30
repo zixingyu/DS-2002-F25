@@ -70,6 +70,8 @@ The goal is to understand that clean data is not the default; it must be **enfor
     # Be sure to include headers in your first row!
     ```
 
+<br>
+
 ### Task 2: Create the Hierarchical JSON Data (Requires Normalization)
 
 1.  In your `lab_script`, define a list of dictionaries that is **hierarchical** (nested) using the structure below.
@@ -105,6 +107,8 @@ The goal is to understand that clean data is not the default; it must be **enfor
     # HINT: Use the 'json' module's 'dump' function to write the data to the file.
     ```
 
+<br>
+
 ---
 
 ## Part 2: Data Validation and Type Casting
@@ -138,6 +142,8 @@ The goal is to understand that clean data is not the default; it must be **enfor
     # HINT: Use the DataFrame's .to_csv() method.
     ```
 
+<br>
+
 ### Task 4: Normalize the JSON Data
 
 1.  In your `lab_script`, use the standard `json` module to load the `raw_course_catalog.json` file.
@@ -159,6 +165,8 @@ The goal is to understand that clean data is not the default; it must be **enfor
     # HINT: Use the DataFrame's .to_csv() method.
     ```
 
+<br>
+
 ---
 
 ## Part 3: The Schema Contract
@@ -179,11 +187,15 @@ The goal is to understand that clean data is not the default; it must be **enfor
 | `is_cs_major` | `BOOL` | True if the student is a CS major, False otherwise. |
 | `credits_taken` | `FLOAT` | Total cumulative credits completed by the student. |
 
+<br>
+
 ### Task 6: Document the Normalized Catalog Schema
 
 1.  Examine the flattened data in your `clean_course_catalog.csv`. Note the column names created by the `json_normalize` function (e.g., `instructors.name` might become `instructors.name` or `name` depending on the arguments you used).
 
 2.  In a text file named **`catalog_schema.txt`**, document the schema for this **normalized** data. You must include **all** columns in your final DataFrame.
+
+<br>
 
 ---
 
