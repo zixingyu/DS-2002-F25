@@ -177,15 +177,29 @@ The goal is to understand that clean data is not the default; it must be **enfor
 
 1.  Examine the final, cleaned data in your `clean_survey_data.csv`.
 
-2.  In a new text file named **`survey_schema.txt`**, formally document the final, clean schema using the format below. Use the standard database types listed (INT, VARCHAR, BOOL, FLOAT).
+2.  In a new markdown file named **`survey_schema.md`**, formally document the final, clean schema using the format below. Use the standard database types listed (INT, VARCHAR, BOOL, FLOAT).
 
+**NOTE**: If a field is a VARCHAR (i.e. a STRING), you must define a reasonable size for the field by indicating a max number of characters, `VARCHAR(X)`. For example, if we have a table of fruit and we have set it to VARCHAR(8), that will work for many fruits like `apple`, `orange`, `banana`, etc. However, `Strawberry` is 10 characters long and would eeither fail or get truncated! We don't want to have to eat a `Strawber`! So then `VARCHAR(10)`? BUT WHAT ABOUT `dragonfruit`?! A good rule of thumb is to think of a reasonable max and then double it. So I think there is likely a 25 character multi-word fruit out there, so I will double 25 and choose `VARCHAR(50)`. Why not go for something like 100? Well because that's just wasteful and we still want to be mindful of the space we are taking up for efficiency, conservation, and we want to catch errors, we don't want anything being in there like `bananananananananananananananananananananananananananananananananananananananananananananananananana`!
+
+Your table should look like the following, with the information filled out (I did the first one for you):
 | Column Name | Required Data Type | Brief Description |
 | :--- | :--- | :--- |
 | `student_id` | `INT` | Unique identifier for the student. |
-| `major` | `VARCHAR(50)` | The student's primary academic major. |
-| `GPA` | `FLOAT` | Student's current Grade Point Average. |
-| `is_cs_major` | `BOOL` | True if the student is a CS major, False otherwise. |
-| `credits_taken` | `FLOAT` | Total cumulative credits completed by the student. |
+| `major` | `DataType` | Brief Description Goes Here. |
+| `GPA` | `DataType` | Brief Description Goes Here. |
+| `is_cs_major` | `DataType` | Brief Description Goes Here. |
+| `credits_taken` | `DataType` | Brief Description Goes Here. |
+
+And in the file itself, you will use this format to create the table. When you look at the preview markdown file in Codespace, it will pretty it up. Once pushed you will be able to see the preview more easily in GitHub.
+```
+| Column Name | Required Data Type | Brief Description |
+| :--- | :--- | :--- |
+| `student_id` | `INT` | Unique identifier for the student. |
+| `major` | `DataType` | Brief Description Goes Here. |
+| `GPA` | `DataType` | Brief Description Goes Here. |
+| `is_cs_major` | `DataType` | Brief Description Goes Here. |
+| `credits_taken` | `DataType` | Brief Description Goes Here. |
+```
 
 <br>
 
@@ -193,7 +207,7 @@ The goal is to understand that clean data is not the default; it must be **enfor
 
 1.  Examine the flattened data in your `clean_course_catalog.csv`. Note the column names created by the `json_normalize` function (e.g., `instructors.name` might become `instructors.name` or `name` depending on the arguments you used).
 
-2.  In a text file named **`catalog_schema.txt`**, document the schema for this **normalized** data. You must include **all** columns in your final DataFrame.
+2.  In a markdown file named **`catalog_schema.md`**, document the schema for this **normalized** data. You must include **all** columns in your final DataFrame.
 
 <br>
 
@@ -216,5 +230,5 @@ The goal is to understand that clean data is not the default; it must be **enfor
 * `raw_course_catalog.json`
 * **`clean_survey_data.csv`**
 * **`clean_course_catalog.csv`**
-* **`survey_schema.txt`**
-* **`catalog_schema.txt`**
+* **`survey_schema.md`**
+* **`catalog_schema.md`**
