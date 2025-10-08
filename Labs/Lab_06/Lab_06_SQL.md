@@ -29,13 +29,18 @@ The Relational Database Management System (RDBMS) we will be using is SQLite. As
   - You will create one (1) GitHub Gist.
   - Please use the template below as a means of filling out the Gist:
     - For some problems, I will just want the SQL query, for some I will want the result from running the query. Make sure you read carefully, so you know which to put.
+  - PART 1 only requires you to copy and past the query and output from the directions under the section "Your Turn".
+    - Formatting for the results is very lenient, I just want to see them there.
 
 ```Markdown
 ################################################
 #################### PART 1 ####################
 ################################################
+QUERY:
+<paste query here>
 
-
+RESULT:
+<paste/type result here>
 
 ################################################
 #################### PART 2 ####################
