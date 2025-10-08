@@ -1,40 +1,129 @@
 # Lab 6 - Structured Query Language (SQL)
 
-<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/108deaed-0886-4a45-a19a-6b1903581642" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/108deaed-0886-4a45-a19a-6b1903581642" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/fb2cfcb8-925a-4316-9eb6-85e030bacdf4" />
 
+<br>
 
-- This lab will take you through two (2) exercises, will be more involved than the last couple of labs, but will give you a wide range and wealth of experience using SQL.
+<br>
+
+Historically, SQL keywords were capitalized to visually distinguish them from table and column names because early computer terminals lacked syntax highlighting.
+
+Today, modern SQL tools and IDEs like DBeaver automatically color-code keywords, making the uppercase convention no longer strictly necessary for readability or function, as SQL is generally case-insensitive. While many style guides maintain the practice for tradition and visual contrast, writing keywords in lowercase is now widely accepted.
+
+<br>
+
+---
+
+## Objective
+This lab will take you through two (2) exercises, will be more involved than the last couple of labs, but will give you a wide range and wealth of experience using SQL.
   - Part 1 will consist of guiding you through making your own table and then querying that table to get some results.
   - Part 2 will have you ingest a database and explore it, testing your SQL skills with increasing complexity.
-- The Relational Database Management System (RDBMS) we will be using is SQLite. As the name suggests, SQLite is a lightweight RDBMS that is incredibly useful for working with local data. So we have talked about RDBMSs like MySQL, Oracle, PostgreSQL, etc., which are server-based. To simply things and get you exposure to SQL and querying, we will not worry about setting up and configuring the appropriate configurations that are needed for a server-based RDBMS.
+The Relational Database Management System (RDBMS) we will be using is SQLite. As the name suggests, SQLite is a lightweight RDBMS that is incredibly useful for working with local data. So we have talked about RDBMSs like MySQL, Oracle, PostgreSQL, etc., which are server-based. To simply things and get you exposure to SQL and querying, we will not worry about setting up and configuring the appropriate configurations that are needed for a server-based RDBMS.
+
+<br>
+
+---
 
 ## SUBMITTING WORK
   - You will create one (1) GitHub Gist.
-  - You will add a comment to section off "Part 1"
-  - You will copy and paste the one (1) SQL Query you will write on your own at the end of Part 1.
-  - Comment another section called "Part 2" and then number 1-15 for here will be where you copy and paste your SQL queries or answers to the question.
+  - Please use the template below as a means of filling out the Gist:
     - For some problems, I will just want the SQL query, for some I will want the result from running the query. Make sure you read carefully, so you know which to put.
 
+```Markdown
+################################################
+#################### PART 1 ####################
+################################################
 
-## Setting up an IDE (DBeaver)
+
+
+################################################
+#################### PART 2 ####################
+################################################
+
+#### Basic Queries
+1. QUERY:
+<paste query here>
+
+2. QUERY:
+<paste query here>
+
+3. RESULT: <paste/type result here>
+
+4. RESULT: <paste/type result here>
+
+5. QUERY:
+<paste query here>
+
+#### Intermediate Queries
+6. QUERY:
+<paste query here>
+
+7. QUERY:
+<paste query here>
+
+8. QUERY:
+<paste query here>
+
+9. RESULT: <paste/type result here>
+
+10. QUERY:
+<paste query here>
+
+#### Advanced Queries
+11. RESULT: <paste/type result here>
+
+12. QUERY:
+<paste query here>
+
+13. RESULT: <paste/type result here>
+
+14. QUERY:
+<paste query here>
+
+15. QUERY:
+<paste query here>
+
+
+```
+
+<br>
+
+---
+
+## Setting Up Your IDE (DBeaver)
 NOTE: You may use any IDE that supports SQLite if you have a preference.
 
-1. Download and Install: Download [**DBeaver Community Edition**](https://dbeaver.io/download/) (it's free and open-source) from the DBeaver website and install it.
+1. Download and Install: Download [**DBeaver Community Edition**](https://dbeaver.io/download/) (it's free and open-source) from the DBeaver website and install it by opening the downloaded file and following the install instructions.
 
 2. Create a New Connection:
   - Open DBeaver.
-  - Click "New Connection."
-  - Choose SQLite.
+  - In the top right, click "New Database Connection" (plug with the +), either by using the drop down arrow or directly on the button.
+      - <img width="262" height="123" alt="image" src="https://github.com/user-attachments/assets/325f811f-1747-47f0-a91d-f96b6cea9ccc" />
+  - Select SQLite and hit "Next >"
+      - <img width="298" height="335" alt="image" src="https://github.com/user-attachments/assets/016b0a24-b491-4b1d-bf3b-bf66f1f062e8" />
   - Connect by: Host
   - Click "Create ..."
+    - <img width="596" height="244" alt="image" src="https://github.com/user-attachments/assets/a3580d93-c87d-4b3c-a038-0b719af6843d" />
     - Navigate to a path in your local directory that you would like to save this data base (.db) that we will create and name it your computing ID
     - My example: atr8ec
   - Click "Save"
+      - <img width="699" height="466" alt="image" src="https://github.com/user-attachments/assets/23d32b86-09bd-4eee-b503-987511bbf19c" />
   - Click "Finish"
+      - <img width="170" height="68" alt="image" src="https://github.com/user-attachments/assets/252bbf92-d117-45df-b918-95cefedfce79" />
   - You should see your newly created and completely empty database on the left-hand side in DBeaver under Database Navigator.
+      - <img width="157" height="121" alt="image" src="https://github.com/user-attachments/assets/96691386-4a8d-499c-820b-8fc52023ede3" />
   - Click into your database on the left-hand navigation and then the SQL tab at the top of the page. This will give you a text field to insert SQL queries.
+      - <img width="99" height="70" alt="image" src="https://github.com/user-attachments/assets/1ebddbab-d355-4ed7-9d68-61a1ec80afd8" />
+      - <img width="570" height="386" alt="image" src="https://github.com/user-attachments/assets/7d6ee872-f5c4-4498-810e-b1855f56e677" />
+   
+<br>
 
-# Part 1 - Creating Tables From Scratch and Querying Them (2 out of 5 Points)
+---
+
+<br>
+
+# Part 1 - Creating Tables From Scratch and Querying Them (15 out of 30 Points)
 
 ## Create a new table
 
@@ -77,6 +166,8 @@ For purposes of inserting mock data, here are some suggestions:
 - `step` - An integer indicating which step of the workflow was completed most recently (e.g. 1-7).
 - `source` - The name of the data source.
 
+<br>
+
 ## Insert data
 
 Using the SQL Editor, add data to your new table. Here is a sample entry you can use:
@@ -114,6 +205,8 @@ Here's an example of data:
 | 20 | 2345lkjwlfkjwsfl.csv   | mst3k | 2023-10-14 |    5 | NIH    |
 +----+------------------------+-------+------------+------+--------+
 ```
+
+<br>
 
 ## Query your table
 
@@ -156,6 +249,8 @@ DELETE FROM tracking WHERE id=19;
 ```
 
 Take some time to practice more SELECT, INSERT, DELETE, and UPDATE queries.
+
+<br>
 
 ## Create a second table and add data
 
@@ -214,6 +309,8 @@ select * from owners;
 +-------+-----------------+------------+----------+
 ```
 
+<br>
+
 ## Query using JOIN statements
 
 Finally, let's write a JOIN statement that relates both the `tracking` and `owners` tables. Imagine we simply want a list of data files, with the real name of the owner for each.
@@ -223,7 +320,7 @@ To get a full `JOIN` of both tables joined, this is a first step:
 SELECT * FROM tracking JOIN owners ON tracking.owner=owners.owner;
 ```
 
-But the results are repetitive with regard to the `owners` data on the right-hand side (results are not exactly what you will see, do not worry):
+But the results are repetitive with regards to the `owners` data on the right-hand side (results are not exactly what you will see, do not worry):
 ```
 sqlite> SELECT * FROM tracking JOIN owners ON tracking.owner=owners.owner;
 +----+------------------------+-------+------------+------+--------+-------+-----------------+------------+----------+
@@ -252,13 +349,14 @@ Here is the query broken into multiple lines with line numbers:
 ```
 
 Some notes:
-
 - Line 2 - select specific columns from each of your two tables with `table_name.column_name`
 - Line 3 - you still select `FROM` a primary table, but then follow it with 
 - Line 4 - a join of the secondary table, which will serve as a resource to populate the query.
 - Line 5 - finally, you must map the "relation", i.e. the column from one table that matches up with a value in the other table.
 
-### Your Turn
+<br>
+
+## Your Turn
 
 Now write a query that lists the `file`, `step`, and owner `name` for researchers who have NOT yet completed the training. Order the results by ascending order from the `updated` column.
 
@@ -266,7 +364,11 @@ Run the query to test or debug your results.
 
 <br>
 
-# Part 2 - Using an Existing Database to Explore Movie Data (3 out of 5 Points)
+---
+
+<br>
+
+# Part 2 - Using an Existing Database to Explore Movie Data (15 out of 30 Points)
 1. Download the DB from the Lab 4 assignment page on Canvas.
 2. Save the data to a location on your local directory that makes sense, like the place where you put the DB from Part 1. Please do not just save it to your downloads... I beg you!
 3. Create a New Connection:
@@ -281,20 +383,28 @@ Run the query to test or debug your results.
   - Click "Finish"
   - You should see your newly created DB that I cureated for you all on the left-hand side in DBeaver under Database Navigator.
 
-## About the Data
+<br>
+
+### About the Data
 In this part of the lab, you'll be using SQL to explore a simplified version of the Internet Movie Database (IMDB).  Your goal is to write queries to answer the questions below.  Don't be afraid to experiment, and remember to use the DBeaver SQL editor to test your queries.
 
-#### Database Schema:
+<br>
+
+### Database Schema:
 - You'll be working with four tables:
   - `crew`: Information about who worked on each title (directors, writers, etc.).
   - `people`: Details about the people involved in movies (actors, directors, etc.).
   - `ratings`: Ratings and vote counts for each title.
   - `titles`: Information about the movies themselves.
- 
-#### Important Tip:
+
+<br>
+
+### Important Tip:
 Before you start, take a few minutes to familiarize yourself with the schema.  Understanding the relationships between the tables is key to writing effective queries.
 
-#### Getting Unstuck:
+<br>
+
+### Getting Unstuck:
 - **Review the schema**: Make sure you understand which tables contain the information you need.
 - **Start simple**: Break down complex questions into smaller steps.
 - **Use DBeaver's help**: DBeaver has documentation and code completion features that can be helpful.
@@ -305,25 +415,32 @@ Before you start, take a few minutes to familiarize yourself with the schema.  U
 ## Questions
 Below you will find 15 questions that you will need to answer about this database, where you will add either the SQL query or the result into your Gist for submission:
 
-#### Basic Queries (5 Questions) (1 of 5 points)
-1. `**QUERY**` List all movie titles. (**Hint**: Which table contains the movie titles?)
-3. `**QUERY**` Find the names of all people in the database: (**Hint**: Which table stores people's names?)
-4. `**RESULT**` How many movies were released on or after the July 1, 2024. (**Hint**: Which table has the release year? How do you filter by date?)
-5. `**RESULT**` What movie has the highest rating: (**Hint**: Which table stores ratings? How do you find the maximum value?)
-6. `**QUERY**` List the names of all directors: (**Hint**: The crew table holds category information. How do you filter for directors?)
+### Quick Note
+- **Titles** - Please use `primary_title` as the title when I ask you to name a movie or title or query for movies.
 
-#### Intermediate Queries (5 Questions) (1 of 5 points)
+### Basic Queries (5 Questions) (1 point each)
+1. `**QUERY**` List all movie titles. (**Hint**: Which table contains the movie titles?)
+2. `**QUERY**` Find the names of all people in the database: (**Hint**: Which table stores people's names?)
+3. `**RESULT**` How many movies were **at least** 100 minutes long?. (**Hint**: Which table has the runtime? How do you filter by INTEGER?)
+4. `**RESULT**` What movie has the highest rating: (**Hint**: Which table stores ratings? How do you find the maximum value?)
+5. `**QUERY**` List the names of all directors: (**Hint**: The crew table holds category information. How do you filter for directors?)
+
+<br>
+
+### Intermediate Queries (5 Questions) (1 point each)
 6. `**QUERY**` List the titles and ratings of all movies. (**Hint**: You'll need to combine data from two tables. What kind of join is appropriate?)
 7. `**QUERY**` Find the names of all actors who were born before 1980. (**Hint**: You'll need to join the people and crew tables and filter by birth year and category.)
 8. `**QUERY**` List the titles of all movies with a rating greater than 8. (**Hint**: Combine data from the titles and ratings tables.)
 9. `**RESULT**` Find the average rating of all movies. (**Hint**: Use an aggregate function.)
 10. `**QUERY**` List the names of all people who have worked as both directors and actors. (**Hint**: This requires checking the crew table for both categories for the same person. You might need to use subqueries or self-joins.)
 
-#### Advanced Queries (5 Questions) (1 of 5 points)
+<br>
+
+### Advanced Queries (5 Questions) (1 point each)
 11. `**RESULT**` Name the movie with the most votes: (**Hint**: Look in the ratings table.)
 12. `**QUERY**` List the names of all actors who have appeared in more than 5 movies: (**Hint**: Use GROUP BY and HAVING.)
-13. `**RESULT**` Name the titles of the top 3 highest-rated movies. (**Hint**: Use ORDER BY and LIMIT.)
-14. `**RESULT**` For each of **your** three most favorite genres, find the number of movies in that genre. (**Hint**: The titles table has a genres column. GROUP BY will be useful. You may also want to look at all of the genres to pick your three favorite.)
+13. `**RESULT**` Name the titles of the top 3 highest-rated movies taht received at least 10,000 votes. (**Hint**: Use ORDER BY, JOIN, and LIMIT.)
+14. `**QUERY**` For each of **your** three most favorite genres, find the number of movies in that genre. (**Hint**: The titles table has a genres column. GROUP BY will be useful. You may also want to look at all of the genres to pick your three favorite.)
 15. `**QUERY**` Find the names of all people who have worked on a movie with a rating greater than 9. (**Hint**: This requires joining multiple tables.)
 
 <br>
